@@ -1,26 +1,62 @@
 ﻿@model IEnumerable<WebBanSach.Models.Data.Sach>
 
-@foreach (var item in Model)
-{
-    <div class="col-sm-3 col-lg-3 col-md-3">
-        <div class="thumbnail">
-            <a title="@item.TenSach" href="/Book/Details/@item.MaSach">
-                <img src="/images/@item.AnhBia" alt="@item.AnhBia" width="180" height="250" />
-            </a>
-            <div class="caption">
-                <h4>
-                    <a title="@item.TenSach" href="/Book/Details/@item.MaSach" style="color:#087BB0;">@(item.TenSach.Length > 26 ? item.TenSach.Substring(0, 22) + "..." : item.TenSach)</a>
-                </h4>
-                <a style="color:black" class="btn btn-warning" href="/Cart/AddItem/?id=@item.MaSach&quantity=1">Mua</a>
-                @if (item.GiaBan > 0)
-                {
-                    <h4 class="pull-right" style="color:black;">@item.GiaBan.Value.ToString("N0") VND</h4>
+<div class="black-box" style="background: #FADEEF;">
+    <h4 style="font-weight: bold; color: black;">Sách mới cập nhật</h4>
+</div>
+
+<div class="white-box">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-3 col-lg-3 col-md-3 book-item">
+                <div class="thumbnail" style="margin-top: 20px;">
+                    <a title="@item.TenSach" href="/Book/Details/@item.MaSach">
+                        <img src="/images/@item.AnhBia" alt="@item.AnhBia" style="max-width: 120px; max-height: 160px;" />
+                    </a>
+                    <div class="caption">
+                        <h5>
+                            <a title="@item.TenSach" href="/Book/Details/@item.MaSach" style="color: black; font-weight: bold; font-size: smaller;">@(item.TenSach.Length > 26 ? item.TenSach.Substring(0, 22) + "..." : item.TenSach)</a>
+                        </h5>
+                        <a style="color: black; background: #E97093" class="btn" href="/Cart/AddItem/?id=@item.MaSach&quantity=1">Mua</a>
+                        @if (item.GiaBan > 0)
+                        {
+                            <h5 class="pull-right" style="color:black; font-size: smaller;">@item.GiaBan.Value.ToString("N0") VND</h5>
+                        }
+                        else
+                        {
+                            <h5 class="pull-right" style="color:red; font-size: smaller;">Liên hệ</h5>
+                        }
+                    </div>
+                </div>
+                @{
+                    var soldQuantity = item.SoLuongTon.HasValue ? (100 - item.SoLuongTon.Value) : 100;
                 }
-                else
-                {
-                    <h4 class="pull-right" style="color:red;">Liên hệ</h4>
-                }
+                <div class="progress" style="height: 14px; margin-bottom: 10px; ">
+                    <div class="progress-bar" role="progressbar" style="width: @(soldQuantity)%; background-color: #E97093;"></div>
+                    <div class="progress-bar" role="progressbar" style="width: @(100 - soldQuantity)%; background-color: #F09FB7;"></div>
+                    <div class="sold-text" style="color: black; font-weight: bold; font-size: 11px; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; ">@((item.SoLuongTon.HasValue && item.SoLuongTon.Value > 0) ? $"{soldQuantity} đã bán" : "Bán hết")</div>
+                </div>
             </div>
-        </div>
+        }
     </div>
-}
+</div>
+
+<style>
+    .book-item {
+        transition: box-shadow 0.3s ease;
+    }
+
+        .book-item:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.progress-sold').each(function () {
+            var percent = $(this).attr('aria-valuenow');
+            $(this).css('width', percent + '%');
+        });
+    });
+</script>

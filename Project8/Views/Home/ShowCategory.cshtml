@@ -28,10 +28,10 @@
                 @foreach (var item in Model)
                 {
                     <li class="category-item">
-                        <a href="/Home/ThemesBook/@item.MaLoai" style="display: flex; align-items: center; flex-direction: column;">
+                        <a href="/Home/ThemesBook/@item.MaLoai" style="color: black; display: flex; align-items: center; flex-direction: column; ">
                             <!-- Căn giữa nội dung và xếp theo chiều dọc -->
                             <img src="~/images/tl1.jpg" alt="Category Image" class="category-image">
-                            <span style="color:#087BB0">@item.TenLoai</span>
+                            <span style="color:black">@item.TenLoai</span>
                         </a>
                     </li>
                 }
