@@ -2,64 +2,79 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
-    <div class="col-md-3">
-                <p style="color:#087BB0" class="fa fa-bars"><i aria-hidden="true"></i><font style="color:#087BB0"> DANH MỤC SÁCH</font></p>
-                @Html.Action("ShowCategory", "Home")
-    </div>
-    <div style="width:71%" class="col-md-9">
-        @*sách nổi bật*@
-        <div  row carousel-holder">
-            <div  class="col-md-12">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
-                    
-                    <div class="carousel-inner">
-                        <div  class="item active">
-                            <a  href="/Book/Details/8">
-                                <img src="~/images/combo1.jpg" alt="slideImage1" />
-                            </a>                           
-                        </div>
-                        <div class="item">
-                            <a href="/Book/Details/9">
-                                <img src="~/images/combo2.jpg" alt="sildeImage2" />
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a  href="/Book/Details/10">
-                                <img src="~/images/combo3.jpg" alt="slideImage3" />
-                            </a>
-                        </div>
+<div class="row" style="background-color: #F0F0F0;margin-top:20px">
+
+    @*sách nổi bật*@
+    <div class="row carousel-holder">
+        <div class="col-md-7">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="/Book/Details/8">
+                            <img src="~/images/combo1.jpg" alt="slideImage1" />
+                        </a>
                     </div>
-                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    <div class="item">
+                        <a href="/Book/Details/9">
+                            <img src="~/images/combo2.jpg" alt="sildeImage2" />
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/Book/Details/10">
+                            <img src="~/images/combo3.jpg" alt="slideImage3" />
+                        </a>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+        <!-- Chèn khung ảnh bên phải -->
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="/Book/Details/11">
+                        <img src="~/images/p1.jpg" alt="Image1" class="img-responsive">
                     </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-12">
+                    <a href="/Book/Details/12">
+                        <img src="~/images/p1.jpg" alt="Image2" class="img-responsive">
                     </a>
                 </div>
             </div>
         </div>
-        @*kết thúc sách nổi bật*@
-        <hr />
-        @*sách bán chạy*@
-        <h3><font style="color:#087BB0; line-height: 2.1;">Sách Mới Cập Nhật</font></h3>
-        <div style="" class ="row">
-            @Html.Action("TopDateBook","Book")            
-        </div>
-        @*kết thúc sách nổi bật*@
-
-        @*Những cuốn sách trong kho và xem tất cả*@
-        <hr />
-        <h3><font style="color:#087BB0">Sách Bán Chạy</font></h3>
-        <p style="text-align:right"><a href="/Book/ShowAllBook">Xem tất cả</a></p>      
-        <div class="row">
-            @Html.Action("DidYouSee", "Book")
-        </div>
-        @*kết thúc sách mới cập nhật*@
     </div>
+
+
+    <div class="col-md-12">
+        <p style="color:#087BB0" class="fa fa-bars"><i aria-hidden="true"></i><font style="color:#087BB0"> DANH MỤC SÁCH</font></p>
+        @Html.Action("ShowCategory", "Home")
+
+    </div>
+
+    @*kết thúc sách nổi bật*@
+    <hr />
+    @*sách bán chạy*@
+    <h3><font style="color:#087BB0; line-height: 2.1;">Sách Mới Cập Nhật</font></h3>
+    <div style="" class="row">
+        @Html.Action("TopDateBook", "Book")
+    </div>
+    @*kết thúc sách nổi bật*@
+
+    @*Những cuốn sách trong kho và xem tất cả*@
+    <hr />
+    <h3><font style="color:#087BB0">Sách Bán Chạy</font></h3>
+    <div class="row">
+        @Html.Action("DidYouSee", "Book")
+    </div>
+    @*kết thúc sách mới cập nhật*@
 </div>

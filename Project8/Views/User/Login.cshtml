@@ -2,44 +2,55 @@
 
 <ul class="nav navbar-nav navbar-right">
     @if (Session["User"] == null)
-    {       
-            
-        <li><a href="/User/Register"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng kí</a></li>
-            <li class="dropdown">
-                <a href="/User/Login" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-unlock" aria-hidden="true"></i> Đăng nhập <b class="caret"></b></a>
-                <ul class="dropdown-menu" style="padding: 15px;min-width: 250px">
-                    <li>
-                        <div class="row">
-                            <div class="col-md-12">
-                                @using (Html.BeginForm("LoginPage", "User", FormMethod.Post))
-                                {
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        @Html.TextBoxFor(model => model.TaiKhoan, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên đăng nhập" })
-                                        @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", @placeholder = "Mật khẩu" })
-                                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Ghi nhớ?
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <button style="background-color:#0094ff" type="submit" class="btn btn-success btn-block">Đăng nhập</button>
-                                    </div>
-                                }
-                            </div>
+    {
+        <li>
+            <div class="Register" style="text-align: center; margin: 15px 30px 0 30px; ">
+                <a href="/User/Register"><i class="fa fa-sign-in" aria-hidden="true" style=" display: block; font-size: 24px; color: #7A7E7F"></i></a>
+                <a href="/User/Register" style=" display: block; font-size: 13px; color: #7A7E7F">Đăng kí</a>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <div class="dropdown-toggle" data-toggle="dropdown" style="text-align: center; margin: 15px 30px 0 30px; ">
+                <a href="/User/Login"><i class="fa fa-unlock" aria-hidden="true" style="display: block; font-size: 24px; color: #7A7E7F "></i></a>
+                <a href="/User/Login" style="display: block; font-size: 13px; color: #7A7E7F ">Đăng nhập<b class="caret"></b></a>
+            </div>
+            <ul class="dropdown-menu" style="padding: 15px;min-width: 250px">
+                <li>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm("LoginPage", "User", FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.TaiKhoan, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Tên đăng nhập" })
+                                    @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Ghi nhớ?
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <button style="background-color:#0094ff" type="submit" class="btn btn-success btn-block">Đăng nhập</button>
+                                </div>
+                            }
                         </div>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/Admin/Login"><i class="fa fa-user-secret" aria-hidden="true"></i></a>
-            </li>
-            @Html.Action("CartHeader", "Cart")
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <div class="Admins" style="text-align: center; margin: 15px 30px 0 30px; ">
+                <a href="/Admin/Login" class="fa fa-user-secret" aria-hidden="true" style="display: block; font-size: 24px; color: #7A7E7F "></a>
+                <a href="/Admin/Login" style="display: block; font-size: 13px; color: #7A7E7F ">Admin</a>
+            </div>
+        </li>
+        @Html.Action("CartHeader", "Cart")
     }
     else
     {
@@ -51,7 +62,7 @@
                 <li>
                     <a href="/User/EditUser"><i class="fa fa-smile-o" style="margin-right: 5px;" aria-hidden="true"></i> Hồ sơ</a>
                 </li>
-                <li ><a href="/Cart"><i class="fa fa-cart-plus" style="margin-right: 6px;" aria-hidden="true"></i>Giỏ Hàng</a></li>
+                <li><a href="/Cart"><i class="fa fa-cart-plus" style="margin-right: 6px;" aria-hidden="true"></i>Giỏ Hàng</a></li>
                 <li>
                     <a href="/User/Logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                 </li>

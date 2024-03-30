@@ -15,7 +15,7 @@
         <p>Nhà xuất bản : @Model.NhaXuatBan.TenNXB</p>
         <p>@Model.Mota </p>
         <hr>
-        @if(Model.SoLuongTon > 0)
+        @if (Model.SoLuongTon > 0)
         {
             <p>Tình trạng: Còn hàng</p>
         }
@@ -23,7 +23,7 @@
         {
             <p>Tình trạng: Liên hệ</p>
         }
-        @if (Model.GiaBan >0)
+        @if (Model.GiaBan > 0)
         {
             <h3>Giá - @Model.GiaBan.Value.ToString("N0") VND</h3>
         }

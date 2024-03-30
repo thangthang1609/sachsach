@@ -1149,6 +1149,7 @@
     <Content Include="Views\User\XacNhan.cshtml" />
     <Content Include="Views\User\ThongBaoKichHoat.cshtml" />
     <Content Include="Views\User\KiemTraThongBaoKichHoat.cshtml" />
+    <Content Include="Views\Book\DetailsHover.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

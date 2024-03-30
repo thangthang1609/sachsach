@@ -1,27 +1,76 @@
 ﻿@model IEnumerable<WebBanSach.Models.Data.Sach>
 
-@foreach (var item in Model)
-{
-    <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <a title="@item.TenSach" href="/Book/Details/@item.MaSach">
-                <img src="/images/@item.AnhBia" alt="@item.AnhBia" width="180" height="250" />
-            </a>
-            <div class="caption">
-                <h4>
-                    <a title="@item.TenSach" href="/Book/Details/@item.MaSach" style="color:#087BB0;">@(item.TenSach.Length > 26 ? item.TenSach.Substring(0, 22) + "..." : item.TenSach)</a>
-                </h4>
-                <a style="color:black" class="btn btn-warning" href="/Cart/AddItem/?id=@item.MaSach&quantity=1">Mua</a>
-                @if (item.GiaBan > 0)
-                {
-                    <h4 class="pull-right" style="color:black;">@item.GiaBan.Value.ToString("N0") VND</h4>
-                }
-                else
-                {
-                    <h4 class="pull-right" style="color:red;">Liên hệ</h4>
-                }
+<style>
+    .thumbnail {
+        border: none; /* Loại bỏ viền xung quanh hình ảnh */
+    }
+
+    .number {
+        position: absolute;
+        top: 50%;
+        left: -25px; /* Điều chỉnh khoảng cách từ số thứ tự đến ảnh */
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    .book-info {
+        margin-left: 90px; /* Tạo khoảng cách giữa ảnh và nội dung */
+    }
+
+        .book-info a {
+            color: black;
+            
+        }
+        .book-info a:hover {
+            text-decoration: none; /* Loại bỏ hiệu ứng hover */
+        }
+
+    .see-more-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .see-more-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: transparent; /* Nền trong suốt */
+            color: #ff69b4; /* Màu chữ đen */
+            text-decoration: none;
+            border: 2px solid #ff69b4; /* Viền hồng */
+            border-radius: 5px;
+            margin-top: 15px; /* Cách nút với sách ra 10px */
+            font-weight: bold;
+        }
+
+    .white-box {
+        background-color: #FFF;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="white-box">
+    <!-- Top 4 sách đầu tiên -->
+    @foreach (var item in Model.Take(8))
+    {
+        <div class="col-md-6">
+            <div class="thumbnail" style="margin-bottom: 20px; padding: 10px; position: relative;">
+                <span class="number">@((Model.ToList().IndexOf(item) + 1).ToString("D2"))</span>
+                <a title="@item.TenSach" href="/Book/Details/@item.MaSach">
+                    <img src="/images/@item.AnhBia" alt="@item.TenSach" style="max-width: 70px; max-height: 100px; margin-bottom: 10px; margin-right: 10px; float: left;" />
+                </a>
+                <div class="book-info">
+                    <h4><a title="@item.TenSach" href="/Book/Details/@item.MaSach">@item.TenSach</a></h4>
+                    <p>Tác giả: @item.TacGia.TenTG</p>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
 
+
+    <div class="see-more-button">
+        <a href="/Book/ShowAllBook">Xem thêm</a>
+    </div>
+</div>

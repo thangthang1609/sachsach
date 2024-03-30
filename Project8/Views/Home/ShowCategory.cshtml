@@ -1,8 +1,42 @@
-﻿@model IEnumerable<WebBanSach.Models.Data.TheLoai>
-
-<div  class="text-links categories-content metro-dropdown-menu; level-0 bold2">
-    @foreach (var item in Model)
-    {
-        <a style="color:#087BB0" href="/Home/ThemesBook/@item.MaLoai" class="list-group-item">@item.TenLoai</a>
+﻿<style>
+    li {
+        margin-right: 13px;
     }
+    .category-item {
+        width: 100%; /* Đặt chiều rộng của mỗi item bằng 100% để hiển thị trên mọi thiết bị */
+        max-width: 170px; /* Đặt kích thước cố định cho mỗi item */
+        text-align: center; /* Căn giữa nội dung */
+        padding: 10px; /* Khoảng cách giữa các item */
+        margin-bottom: 10px; /* Khoảng cách dưới của mỗi item */
+    }
+
+    .category-image {
+        width: 70px; /* Kích thước hình ảnh */
+        height: 70px; /* Kích thước hình ảnh */
+        display: block; /* Hiển thị hình ảnh như một khối để có thể căn giữa */
+        margin: 0 auto 5px; /* Căn giữa hình ảnh và thêm khoảng cách dưới */
+    }
+</style>
+
+<div class="col-md-12">
+    <!-- Navbar -->
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div>
+            <!-- Danh mục sách -->
+            <ul class="nav navbar-nav" style="display: flex; flex-wrap: wrap;">
+                @foreach (var item in Model)
+                {
+                    <li class="category-item">
+                        <a href="/Home/ThemesBook/@item.MaLoai" style="display: flex; align-items: center; flex-direction: column;">
+                            <!-- Căn giữa nội dung và xếp theo chiều dọc -->
+                            <img src="~/images/tl1.jpg" alt="Category Image" class="category-image">
+                            <span style="color:#087BB0">@item.TenLoai</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
 </div>
