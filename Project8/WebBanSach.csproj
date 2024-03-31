@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\Data\Admin.cs" />
+    <Compile Include="Models\Data\BinhLuan.cs" />
     <Compile Include="Models\Data\BSDBContext.cs" />
     <Compile Include="Models\Data\ChiTietDDH.cs" />
     <Compile Include="Models\Data\DonDatHang.cs" />
@@ -656,6 +657,7 @@
     <Content Include="Content\Client\css\font-awesome.min.css" />
     <Content Include="Content\Client\css\footer.css" />
     <Content Include="Content\Client\css\jquery.dataTables.min.css" />
+    <Content Include="Content\Client\css\Shake.css" />
     <Content Include="Content\Client\css\shop-homepage.css" />
     <Content Include="Content\Client\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Client\fonts\glyphicons-halflings-regular.svg" />
@@ -1150,6 +1152,8 @@
     <Content Include="Views\User\ThongBaoKichHoat.cshtml" />
     <Content Include="Views\User\KiemTraThongBaoKichHoat.cshtml" />
     <Content Include="Views\Book\DetailsHover.cshtml" />
+    <Content Include="Views\Shared\_PriceFilter.cshtml" />
+    <Content Include="Views\Home\_BooksPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

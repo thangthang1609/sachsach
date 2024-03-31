@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>    
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,9 +8,9 @@
     <meta name="author" content="VHP">
     <title>Book Store Shop</title>
     <!-- Bootstrap Core CSS -->
-    <link href="/Content/Client/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/Content/Client/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="/Content/Client/css/shop-homepage.css" rel="stylesheet"/>
+    <link href="/Content/Client/css/shop-homepage.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,15 +18,18 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     @*<link href="/Content/Client/css/font-awesome.min.css" rel="stylesheet" />*@
-    <link href="/Content/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/Content/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Client/css/Shake.css" rel="stylesheet" />
+
     @*DataTables*@
-    <link href="/Content/Client/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link href="/Content/Client/css/jquery.dataTables.min.css" rel="stylesheet" />
     @*!DataTables*@
-    <link href="/Content/Client/css/footer.css" rel="stylesheet"/>
+    <link href="/Content/Client/css/footer.css" rel="stylesheet" />
     <style>
         body {
             background-color: #F0F0F0;
         }
+
         .search {
             margin-top: 12px;
             position: relative; /* Để biểu tượng tìm kiếm có thể đặt vị trí tương đối */
@@ -37,15 +40,16 @@
             margin: 15px 30px 0 30px;
         }
 
-        .contact i {
-            display: block;
-            font-size: 24px;
-        }
+            .contact i {
+                display: block;
+                font-size: 24px;
+            }
 
-        .contact a {
-            display: block;
-            font-size: 13px;
-        }
+            .contact a {
+                display: block;
+                font-size: 13px;
+            }
+
         .footer ul li a {
             color: white; /* Màu chữ mặc định */
             transition: color 0.3s, transform 0.3s; /* Thêm hiệu ứng màu chữ và chuyển động */
@@ -57,6 +61,10 @@
                 transform: translateX(5px); /* Di chuyển chữ sang phải */
                 text-decoration: underline; /* Thêm gạch đầu dòng */
             }
+        /* Khi navbar được thu nhỏ */
+        .navbar-toggle .icon-bar {
+            background-color: black; /* Đặt màu cho các dấu gạch khi navbar được thu nhỏ lại là màu đen */
+        }
 
     </style>
 </head>
@@ -85,7 +93,7 @@
                     <li>
                         <div class="contact">
                             <i class="fa fa-phone-square" aria-hidden="true" style="color: #7A7E7F"></i>
-                            <a href="/Home/Contact" style="color: #7A7E7F"  >Liên hệ</a>
+                            <a href="/Home/Contact" style="color: #7A7E7F">Liên hệ</a>
                         </div>
                     </li>
                 </ul>
@@ -220,5 +228,62 @@
         });
     </script>
     @RenderSection("jsFooter", required: false)
+    <script>
+        $(document).ready(function () {
+            // Khi cửa sổ được cuộn
+            $(window).scroll(function () {
+                // Nếu vị trí cuộn dọc lớn hơn 100 pixel
+                if ($(this).scrollTop() > 100) {
+                    // Hiển thị nút quay về đầu trang
+                    $('#back-to-top-btn').fadeIn();
+                } else {
+                    // Ngược lại, ẩn nút quay về đầu trang
+                    $('#back-to-top-btn').fadeOut();
+                }
+            });
+
+            // Khi nút quay về đầu trang được click
+            $('#back-to-top-btn').click(function () {
+                // Cuộn trang lên đầu trong vòng 600 mili-giây
+                $('html, body').animate({ scrollTop: 0 }, 600);
+                // Ngăn chặn hành vi mặc định của một liên kết
+                return false;
+            });
+        });
+    </script>
+    <div class="phone-icon" onclick="togglePhoneInfo()">
+        <!-- Khi click vào biểu tượng điện thoại, hiển thị hoặc ẩn thông tin -->
+        <div class="phone-info">
+            <!-- Số điện thoại -->
+            <div style="font-size: 22px; margin-top: -40px; font-weight: 600">0365089861</div>
+            <!-- Thời gian hoạt động -->
+            <div style="margin-top: -20px">9:00 - 17:00</div>
+            <!-- Liên kết xã hội -->
+            <pre style="background-color: rgba(30, 150, 210, 0.8); display: flex; justify-content: center; margin-top: -20px">
+            <a href="https://www.facebook.com/" style="margin-right: 20px;"><i class="fa fa-facebook-square"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
+      </pre>
+            <!-- Email -->
+            <div style="margin-top: -40px;"><strong>Email:</strong>Nhom4@gmail.com</div>
+            <!-- Địa chỉ -->
+            <div style="margin-top: -20px;"><strong>Địa chỉ:</strong> 279 Nguyễn Tri Phương, Phường 5, Quận 10, Thành phố HCM</div>
+        </div>
+        <!-- Biểu tượng điện thoại -->
+        <i class="fa fa-phone phone-icon-img" aria-hidden="true"></i>
+    </div>
+    <script>
+        // Hàm để hiển thị hoặc ẩn bảng thông tin
+        function togglePhoneInfo() {
+            var phoneInfo = document.querySelector('.phone-info');
+            // Kiểm tra nếu bảng thông tin đang hiển thị, thì ẩn nó đi
+            if (phoneInfo.style.display === 'block') {
+                phoneInfo.style.display = 'none';
+            } else {
+                // Nếu không, hiển thị bảng thông tin
+                phoneInfo.style.display = 'block';
+            }
+        }
+    </script>
+
 </body>
 </html>

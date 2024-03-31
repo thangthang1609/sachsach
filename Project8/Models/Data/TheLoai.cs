@@ -14,7 +14,7 @@
         {
             Saches = new HashSet<Sach>();
         }
-
+        public string hinhanh { get; set; }
         [Key]
         [Display(Name = "Mã loại")]
         public int MaLoai { get; set; }

@@ -49,5 +49,17 @@ namespace WebBanSach.Models.Process
             return db.Saches.Where(x => x.TenSach.Contains(key)).OrderBy(x=>x.TenSach).ToList();
         }
 
+        /// <summary>
+        /// Hàm tìm kiếm sách theo khoảng giá
+        /// </summary>
+        /// <param name="minPrice">int</param>
+        /// <param name="maxPrice">int</param>
+        /// <returns>List<Sach></returns>
+        public List<Sach> GetBooksByPriceRange(int minPrice, int maxPrice)
+        {
+            return db.Saches.Where(x => x.GiaBan >= minPrice && x.GiaBan <= maxPrice).ToList();
+        }
+
+
     }
 }

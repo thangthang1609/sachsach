@@ -1,0 +1,83 @@
+﻿.phone-icon {
+    position: fixed; /* Thiết lập vị trí tuyệt đối */
+    bottom: 80px; /* Đặt vị trí từ dưới lên 10px */
+    right: 15px; /* Đặt vị trí từ bên trái qua phải 10px */
+    width: 60px; /* Độ rộng */
+    height: 60px; /* Độ cao */
+    border-radius: 50%; /* Tạo hình tròn */
+    background-color: #6699FF; /* Màu nền xanh dương */
+    display: flex; /* Hiển thị theo kiểu flex */
+    justify-content: center; /* Canh chỉnh giữa theo chiều ngang */
+    align-items: center; /* Canh chỉnh giữa theo chiều dọc */
+}
+/* Kết hợp với keyframes shake */
+.phone-icon-img {
+    animation: Shake 0.5s infinite;
+}
+
+.phone-icon i {
+    color: white; /* Màu trắng cho biểu tượng điện thoại */
+    font-size: 30px; /* Kích thước của biểu tượng */
+}
+
+.phone-icon:hover .phone-info {
+    display: block /* Hiển thị thông tin khi hover */
+}
+
+.phone-info {
+    display: none; /* Ẩn thông tin khi không hover */
+    position: absolute; /* Thiết lập vị trí tuyệt đối */
+    bottom: 100%; /* Đặt vị trí từ dưới lên trên 100% so với biểu tượng */
+    left: 300%; /* Đặt vị trí từ trái qua phải 50% */
+    margin-top: 0px;
+    padding: 10px;
+    transform: translateX(-50%); /* Canh chỉnh vị trí hiển thị của thông tin chi tiết */
+    background-color: rgba(30, 150, 210, 0.8); /* Màu nền của thông tin chi tiết */
+    color: white; /* Màu chữ của thông tin chi tiết */
+    border-radius: 5px; /* Bo tròn góc cho thông tin chi tiết */
+    z-index: 999; /* Đảm bảo thông tin chi tiết hiển thị trên các phần tử khác */
+    white-space: pre-line; /* Ngăn chặn làm mất dòng cho thông tin chi tiết */
+    width: 200px; /* Đặt chiều rộng của bảng thông tin */
+    font-size: 16px; /* Đặt kích thước chữ cho thông tin chi tiết */
+}
+
+    .phone-info > div {
+        margin-bottom: -20px; /* Đặt margin dưới cho các phần tử con trong .phone-info */
+    }
+
+@-webkit-keyframes Shake {
+    0% {
+        transform: rotate(-5deg);
+    }
+    /* Góc quay ban đầu */
+    50% {
+        transform: rotate(5deg);
+    }
+    /* Góc quay ở giữa */
+    100% {
+        transform: rotate(-5deg);
+    }
+    /* Góc quay cuối cùng */
+}
+
+@keyframes Shake {
+    0% {
+        transform: translate(-3px, -3px) rotate(5deg);
+    }
+
+    25% {
+        transform: translate(-3px, 3px) rotate(5deg);
+    }
+
+    50% {
+        transform: translate(-3px, 3px) rotate(5eg);
+    }
+
+    75% {
+        transform: translate(-3px, 3px) rotate(-5deg);
+    }
+
+    100% {
+        transform: translate(-2px, 2px) rotate(5deg);
+    }
+}

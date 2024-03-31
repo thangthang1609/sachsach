@@ -1,0 +1,134 @@
+﻿<style>
+    /* CSS cho nút tìm kiếm */
+    .search-button {
+        margin: 20px auto; /* Khoảng cách với phần tử khác */
+        display: block; /* Hiển thị nút dạng block để chiếm toàn bộ chiều ngang của phần tử cha */
+        width: 30%; /* Chiều rộng của nút */
+        padding: 10px; /* Khoảng cách bên trong của nút */
+        background-color: #007bff; /* Màu nền của nút */
+        color: #fff; /* Màu chữ */
+        border: none; /* Không có đường viền */
+        border-radius: 5px; /* Bo tròn các góc */
+        cursor: pointer; /* Con trỏ chuột khi di chuyển qua nút */
+    }
+
+        /* Hover effect cho nút tìm kiếm */
+        .search-button:hover {
+            background-color: #0056b3; /* Màu nền thay đổi khi hover */
+        }
+
+    /* CSS cho các nút lọc giá */
+    .price-button {
+        width: 100%; /* Thiết lập chiều rộng của các nút là 100% của phần tử cha */
+        margin-bottom: 5px; /* Tạo khoảng cách giữa các nút */
+    }
+</style>
+<p style="font-size:2rem; text-align:center; font-weight:bold">Lọc giá sản phẩm</p> <!-- Tiêu đề "Lọc giá sản phẩm" -->
+<form id="search-form" action="@Url.Action("GetBooksByPriceRange", "Home")" method="POST">
+    <!-- Form để tìm kiếm sản phẩm -->
+    <div>
+        <div id="min-price-filter">
+            <label for="min-price">Từ:</label> <!-- Nhãn cho ô nhập giá từ -->
+            <input type="number" id="min-price" name="minPrice" min="0" max="1000000" value="0"> <!-- Ô nhập giá từ -->
+            <span class="currency">VND</span> <!-- Thêm phần tử span để hiển thị chữ "VND" -->
+            <input type="range" id="min-price-range" min="0" max="1000000" value="0"> <!-- Thanh trượt cho giá từ -->
+        </div>
+        <div id="max-price-filter">
+            <label for="max-price">Đến:</label> <!-- Nhãn cho ô nhập giá đến -->
+            <input type="number" id="max-price" name="maxPrice" min="0" max="1000000" value="1000000"> <!-- Ô nhập giá đến -->
+            <span class="currency">VND</span> <!-- Thêm phần tử span để hiển thị chữ "VND" -->
+            <input type="range" id="max-price-range" min="0" max="1000000" value="1000000"> <!-- Thanh trượt cho giá đến -->
+        </div>
+    </div>
+
+    <div class="price-buttons">
+        <button type="button" class="price-button" onclick="filterPrice(0, 200000)">0 - 200,000</button> <!-- Button lọc sản phẩm có giá 0-200000 -->
+        <button type="button" class="price-button" onclick="filterPrice(200000, 400000)">200,000 - 400,000</button>
+        <button type="button" class="price-button" onclick="filterPrice(400000, 600000)">400,000 - 600,000</button>
+        <button type="button" class="price-button" onclick="filterPrice(600000, 800000)">600,000 - 800,000</button>
+        <button type="button" class="price-button" onclick="filterPrice(800000, 1000000)">800,000 - 1,000,000</button>
+    </div>
+
+    <button type="submit" class="search-button">Tìm kiếm</button> <!-- Button tìm kiếm -->
+</form>
+
+
+<script>
+// Lưu các phần tử DOM vào các biến const
+    const minPriceInput = document.getElementById("min-price");
+    const maxPriceInput = document.getElementById("max-price");
+    const minPriceRangeInput = document.getElementById("min-price-range");
+    const maxPriceRangeInput = document.getElementById("max-price-range");
+
+    // Lưu giá trị của ô từ và ô đến vào sessionStorage
+    sessionStorage.setItem('minPrice', minPriceInput.value);
+    sessionStorage.setItem('maxPrice', maxPriceInput.value);
+
+    // Sự kiện khi thanh range của ô từ thay đổi
+    minPriceRangeInput.addEventListener("input", function () {
+        minPriceInput.value = minPriceRangeInput.value;
+    });
+
+    // Sự kiện khi thanh range của ô đến thay đổi
+    maxPriceRangeInput.addEventListener("input", function () {
+        maxPriceInput.value = maxPriceRangeInput.value;
+    });
+
+    // Sự kiện khi ô từ thay đổi
+    minPriceInput.addEventListener("input", function () {
+        const min = parseInt(minPriceInput.value);
+        const max = parseInt(maxPriceInput.value);
+        if (min > max) {
+            maxPriceInput.value = min;
+        }
+        minPriceRangeInput.value = min;
+    });
+
+    // Sự kiện khi ô đến thay đổi
+    maxPriceInput.addEventListener("input", function () {
+        const min = parseInt(minPriceInput.value);
+        const max = parseInt(maxPriceInput.value);
+        if (max < min) {
+            minPriceInput.value = max;
+        }
+        maxPriceRangeInput.value = max;
+    });
+
+    // Hàm để lọc giá sản phẩm
+    function filterPrice(min, max) {
+        minPriceInput.value = min;
+        maxPriceInput.value = max;
+        minPriceRangeInput.value = min;
+        maxPriceRangeInput.value = max;
+    }
+
+    // Hàm để tìm kiếm sản phẩm
+    function searchProducts() {
+        var minPrice = document.getElementById("min-price").value;
+        var maxPrice = document.getElementById("max-price").value;
+        var url = '@Url.Action("GetBooksByPriceRange", "Home")';
+        sessionStorage.setItem('minPrice', minPrice);
+        sessionStorage.setItem('maxPrice', maxPrice);
+
+        // Gửi AJAX request để tìm kiếm sản phẩm
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: { minPrice: minPrice, maxPrice: maxPrice },
+            success: function (result) {
+                $('#books-container').html(result);
+            }
+        });
+
+        return false; // Ngăn chặn gửi form mặc định
+    }
+
+    // Sự kiện khi trang được load
+    window.onload = function () {
+        // Khôi phục giá trị từ sessionStorage (nếu có)
+        var minPriceValue = sessionStorage.getItem('minPrice');
+        var maxPriceValue = sessionStorage.getItem('maxPrice');
+        minPriceInput.value = minPriceValue ? minPriceValue : "";
+        maxPriceInput.value = maxPriceValue ? maxPriceValue : "";
+    };
+</script>

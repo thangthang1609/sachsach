@@ -6,14 +6,14 @@
         <li>
             <div class="Register" style="text-align: center; margin: 15px 30px 0 30px; ">
                 <a href="/User/Register"><i class="fa fa-sign-in" aria-hidden="true" style=" display: block; font-size: 24px; color: #7A7E7F"></i></a>
-                <a href="/User/Register" style=" display: block; font-size: 13px; color: #7A7E7F">Đăng kí</a>
+                <a href="/User/Register" style=" display: block; font-size: 13px; color: black">Đăng kí</a>
             </div>
         </li>
 
         <li class="dropdown">
             <div class="dropdown-toggle" data-toggle="dropdown" style="text-align: center; margin: 15px 30px 0 30px; ">
                 <a href="/User/Login"><i class="fa fa-unlock" aria-hidden="true" style="display: block; font-size: 24px; color: #7A7E7F "></i></a>
-                <a href="/User/Login" style="display: block; font-size: 13px; color: #7A7E7F ">Đăng nhập<b class="caret"></b></a>
+                <a href="/User/Login" style="display: block; font-size: 13px; color: black ">Đăng nhập<b class="caret"></b></a>
             </div>
             <ul class="dropdown-menu" style="padding: 15px;min-width: 250px">
                 <li>
@@ -46,17 +46,17 @@
         </li>
         <li>
             <div class="Admins" style="text-align: center; margin: 15px 30px 0 30px; ">
-                <a href="/Admin/Login" class="fa fa-user-secret" aria-hidden="true" style="display: block; font-size: 24px; color: #7A7E7F "></a>
-                <a href="/Admin/Login" style="display: block; font-size: 13px; color: #7A7E7F ">Admin</a>
+                <a href="/Admin/Login" class="fa fa-user-secret" aria-hidden="true" style="display: block; font-size: 24px; color: black "></a>
+                <a href="/Admin/Login" style="display: block; font-size: 13px; color: black ">Admin</a>
             </div>
         </li>
         @Html.Action("CartHeader", "Cart")
     }
     else
     {
-        <li class="dropdown">
+        <li class="dropdown" style="color: black;">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user-o" aria-hidden="true"></i> Tài Khoản : @Session["User"] <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user-o" aria-hidden="true" style="color: black;"></i> Tài Khoản : @Session["User"] <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>

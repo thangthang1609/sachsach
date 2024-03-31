@@ -7,6 +7,8 @@ using WebBanSach.Models.Data;
 using WebBanSach.Models.Process;
 using PagedList;
 using PagedList.Mvc;
+using WebBanSach.Models;
+
 
 namespace WebBanSach.Controllers
 {
@@ -31,6 +33,7 @@ namespace WebBanSach.Controllers
         public ActionResult Details(int id)
         {
             var result = new AdminProcess().GetIdBook(id);
+
 
             return View(result);
         }

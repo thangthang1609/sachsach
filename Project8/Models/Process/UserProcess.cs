@@ -103,7 +103,6 @@ namespace WebBanSach.Models.Process
             {
                 var kh = db.KhachHangs.Find(entity.MaKH);
                 kh.TenKH = entity.TenKH;
-                kh.Email = entity.Email;
                 kh.DiaChi = entity.DiaChi;
                 kh.DienThoai = entity.DienThoai;
                 kh.NgaySinh = entity.NgaySinh;

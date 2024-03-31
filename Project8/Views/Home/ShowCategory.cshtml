@@ -26,15 +26,15 @@
             <!-- Danh mục sách -->
             <ul class="nav navbar-nav" style="display: flex; flex-wrap: wrap;">
                 @foreach (var item in Model)
-                {
+                 {
                     <li class="category-item">
                         <a href="/Home/ThemesBook/@item.MaLoai" style="color: black; display: flex; align-items: center; flex-direction: column; ">
                             <!-- Căn giữa nội dung và xếp theo chiều dọc -->
-                            <img src="~/images/tl1.jpg" alt="Category Image" class="category-image">
+                            <img src="/images/@item.hinhanh" alt="Category Image" class="category-image"
                             <span style="color:black">@item.TenLoai</span>
                         </a>
                     </li>
-                }
+                 }
             </ul>
         </div>
         <!-- /.navbar-collapse -->

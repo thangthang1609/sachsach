@@ -60,9 +60,9 @@ namespace WebBanSach.Controllers
                     kh.NgaySinh = model.NgaySinh;
                     kh.NgayTao = DateTime.Now;
                     kh.TrangThai = false;
-                    
+
                     var result = user.InsertUser(kh);
-                    
+
                     var idUser = db.KhachHangs.FirstOrDefault(n => n.Email == kh.Email && n.TenKH == kh.TenKH);
                     BuildUserTemplate(idUser.MaKH);
                     if (result > 0)
@@ -78,7 +78,7 @@ namespace WebBanSach.Controllers
                         ModelState.AddModelError("", "Đăng ký không thành công.");
                     }
                 }
-                            
+
             }
 
             return View(model);
@@ -104,7 +104,7 @@ namespace WebBanSach.Controllers
             string body =
                 System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
             var inforKH = db.KhachHangs.Where(x => x.MaKH == khMaKh).First();
-            var url = "https://webbansach17dtha3.cf/" + "User/XacNhan?khMaKh="+khMaKh;
+            var url = "https://webbansach17dtha3.cf/" + "User/XacNhan?khMaKh=" + khMaKh;
             body = body.Replace("@ViewBag.LinkXacNhan", url);
             body = body.ToString();
             BuildEmailTemplate("Tài Khoản Đã Tạo Thành Công", body, inforKH.Email);
@@ -134,7 +134,7 @@ namespace WebBanSach.Controllers
             {
                 mail.CC.Add(new MailAddress(cc));
             }
-            
+
             mail.Subject = subject;
             mail.Body = body;
             mail.IsBodyHtml = true;
@@ -150,7 +150,7 @@ namespace WebBanSach.Controllers
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("webbansach17dtha3@gmail.com","webbansach123");
+            client.Credentials = new System.Net.NetworkCredential("webbansach17dtha3@gmail.com", "webbansach123");
             try
             {
                 client.Send(mail);
@@ -215,7 +215,7 @@ namespace WebBanSach.Controllers
 
         //GET : /User/Login : đăng nhập tài khoản
         //Parital View : Login
-        
+
         [ChildActionOnly]
         public ActionResult Login()
         {
@@ -300,7 +300,7 @@ namespace WebBanSach.Controllers
                 //thực hiện kiểm tra
                 if (result == 1)
                 {
-                    return RedirectToAction("EditUser");                  
+                    return RedirectToAction("EditUser");
                 }
                 else
                 {

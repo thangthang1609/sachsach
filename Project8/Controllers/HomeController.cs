@@ -162,5 +162,14 @@ namespace WebBanSach.Controllers
             return View(result);
         }
 
+        public ActionResult GetBooksByPriceRange(int minPrice, int maxPrice, int? page)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSize = 6;
+            var books = new HomeProcess().GetBooksByPriceRange(minPrice, maxPrice).ToPagedList(pageNumber, pageSize);
+            return PartialView("_BooksPartial", books);
+        }
+
     }
+
 }
